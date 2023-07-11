@@ -176,7 +176,7 @@ ggsave("urban_population-trends.png", bg="white", units="in", width=9, height=6)
 
 
 
-### Trend in Fertility Rate in Africa
+### Trend in Median Age in Africa
 
 Africa_population_rate <- 
   world_pop_cleaned |> 
@@ -281,4 +281,87 @@ top_20_countries |>
   coord_cartesian(xlim = c(15, 40), expand = TRUE)
 
 ggsave('median_age.png', bg = "white", dpi = 300, 
+       height = 7, width = 9, units = 'in')
+
+
+
+
+
+#### African Fertility Rate ####
+
+afri_pop_range <- 
+  Africa_population_rate |> 
+  select(-median_age) |> 
+  filter(year %in% range(year)) |> 
+  ## transform to wide
+  pivot_wider(names_from = year, values_from = fertility_rate, names_prefix = 'year_') |> 
+  ## drop NA's
+  na.omit() |> 
+  ## get the differennce
+  mutate(fert_diff = year_1955 - year_2020,
+         fert_diff_abs = abs(fert_diff))
+
+### top 20 countries with the highest median age diff between 1955 and 2020
+
+
+top_20_countries <- 
+  afri_pop_range |> 
+  mutate(fert_rate_rank = rank(fert_diff_abs)) |> 
+  filter(fert_rate_rank <= 20) |> 
+  select(country, year_1955, year_2020, fert_diff) |> 
+  mutate(country = fct_reorder(country, year_2020 * if_else(fert_diff < 0, -1, 1)))
+
+
+subtitle <- glue::glue(
+  "Top 20 Countries With the Lowest Difference in Fertility Rate Between <span style = 'color:{color_palette['1955']}'>1955</span> and <span style = 'color:{color_palette['2020']}'>2020</span>"
+)
+
+title <- glue::glue(
+  "Fertility In African Countries between <span style = 'color:{color_palette['1955']}'>1955</span> and <span style = 'color:{color_palette['2020']}'>2020</span>"
+)
+
+
+top_countries <- unique(top_20_countries$country) |> as.character()
+
+last_trial <- 
+  Africa_population_rate |> 
+  na.omit() |> 
+  filter(year %in% range(year)) |> 
+  mutate(year = factor(year)) |> 
+  filter(country %in% top_countries)
+
+
+
+top_20_countries |> 
+  mutate(country = fct_reorder(country, fert_diff)) |> 
+  ggplot() +
+  geom_segment(
+    aes(y = country, yend = country, x = year_1955, xend = year_2020),
+    col = 'grey60',
+    size = 1.2
+  ) +
+  geom_point(
+    data = last_trial,
+    aes(x = fertility_rate, y = country, col = year), size = 2.5
+  ) +
+  labs(
+    x = 'Fertility Rate',
+    y = element_blank(),
+    title = title,
+    subtitle = subtitle,
+    caption = 'Data: https://www.worldometers.info/world-population/population-by-country/'
+  ) +
+  scale_color_manual(values = color_palette) +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    plot.subtitle = element_textbox_simple(
+      face ="italic", family="firasans", margin=margin(b=10)
+    )
+  ) +
+  coord_cartesian(xlim = c(1, 9), expand = TRUE)+
+  scale_x_continuous(expand = expansion(mult = 0.01))
+
+
+ggsave('fertility_rate.png', bg = "white", dpi = 300, 
        height = 7, width = 9, units = 'in')
