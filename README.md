@@ -28,7 +28,7 @@ We explored the population changes between **1955 - 2020**. We also explored the
 - Median Age is Lowest in West African Countries (Chad and Male) and Central African Countries( Sao Tome, and Principles, Central African Republic, and Gabon - decreasing significantly from in 2020
 - Among the countries, Chad had the youngest median age in 2020
 
-## Fertility Rate Change in Africa Between 1955 - 200
+## Fertility Rate Change in Africa Between 1955 - 2020
 
 ![Fertility Rate](https://github.com/wakibia/african-population/blob/master/img/fertility_rate.png)
 
