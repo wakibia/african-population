@@ -37,3 +37,7 @@ We explored the population changes between **1955 - 2020**. We also explored the
 - In the fertility chart above, the top 20 countries with the lowest difference in fertility rate in 1955 and 2020
 - All the countries have a fertility rate higher than 3.5 for both 1955 and 2020
 - Gabon and DR Congo had the smallest change in fertility
+
+
+## Urban Population Changes between 1960 and 2019
+![Urban Population - Slope Graph](https://github.com/wakibia/african-population/blob/master/img/urban-pop-slope.png) 
