@@ -18,3 +18,22 @@ We explored the population changes between **1955 - 2020**. We also explored the
 ## Kenyan Urban Population Trend between 1955 - 2020
 
 ![kenyan_urban_population](https://github.com/wakibia/african-population/blob/master/img/urban_population-trends.png)
+
+
+## African Median Age Between 1955 - 2020
+
+![African Median Aged](https://github.com/wakibia/african-population/blob/master/img/median_age.png)
+
+- Median age is highest in Mauritius and Reunion both of which are islands - increasing significantly from 1955 to 2020
+- Median Age is Lowest in West African Countries (Chad and Male) and Central African Countries( Sao Tome, and Principles, Central African Republic, and Gabon - decreasing significantly from in 2020
+- Among the countries, Chad had the youngest median age in 2020
+
+## Fertility Rate Change in Africa Between 1955 - 2020
+
+![Fertility Rate](https://github.com/wakibia/african-population/blob/master/img/fertility_rate.png)
+
+- we could expect the fertility rate to decrease in the countries - The data indicate that in fact, the fertility rate has actually decreased
+- However, some countries experienced a very high decrease in the fertility rate from 1955 to 2020 while others had a very low decrease
+- In the fertility chart above, the top 20 countries with the lowest difference in fertility rate in 1955 and 2020
+- All the countries have a fertility rate higher than 3.5 for both 1955 and 2020
+- Gabon and DR Congo had the smallest change in fertility
